@@ -47,7 +47,7 @@ public class SphereBehaviour : NetworkBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject.Find("GameManager").GetComponent<Manager>().CmdAddScore(other.gameObject.name);
+        GameObject.Find("GameManager").GetComponent<Manager.Manager>().CmdAddScore(other.gameObject.name);
     }
 
     

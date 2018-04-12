@@ -32,6 +32,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private GameObject m_spawn;
         [SerializeField] private GameObject m_Bubble;
         [SerializeField] private GameObject m_BubbleSpawn;
+        [SerializeField] private GameObject m_Manager;
 
 
         private Camera m_Camera;
@@ -64,6 +65,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            m_Manager = GameObject.Find("GameManager");
             //m_spawnPoint = m_spawn.transform;
         }
 
@@ -116,6 +118,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+            
         }
 
 
@@ -314,6 +317,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Command]
         private void CmdShootBubble()
         {
+            Debug.Log("shoot");
             GameObject tmp = Instantiate(m_Bubble, m_BubbleSpawn.transform.position, m_BubbleSpawn.transform.rotation);
             Rigidbody body = tmp.GetComponent<Rigidbody>();
             body.velocity = tmp.transform.forward * 200;
